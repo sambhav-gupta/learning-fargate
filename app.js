@@ -8,6 +8,7 @@ app.get("/health", (req, res) => {
   res.send("healthy");
 });
 
+console.log("Check for new release update")
 app.listen(3000, () => {
   console.log("App listening on port 3000!");
 });
