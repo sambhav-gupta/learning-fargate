@@ -11,6 +11,3 @@ phases:
   post_build:
     commands:
       - docker push 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate
-      - printf '[{"name":"sambhav-gupta-sample-task-defination","imageUri":"%s"}]' 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate:latest > imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
