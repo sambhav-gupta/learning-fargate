@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate
+  build:
+    commands:
+      - docker build -t sambhav-gupta-sample-image:latest .
+      - docker tag sambhav-gupta-sample-image:latest 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate
+  post_build:
+    commands:
+      - docker push 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate
+      - printf '[{"name":"sambhav-gupta-sample-task-defination,"imageUri":"%s"}]' 575390307983.dkr.ecr.us-west-2.amazonaws.com/sambhav-gupta-learning-fargate > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
